@@ -131,7 +131,86 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 ```
 ## Reading Dataset
+```
+df = pd.read_csv("IRIS.csv")
+df
+```
+## Assiging X and Y values
+```
+X = df[['sepal_length', 'sepal_width', 'petal_length', 'petal_width']]
+  
+y = df['species']
+```
+## First five values of X and Y
+```
+X.head()
 
+y.head()
+```
+## Unique values in Y
+```
+print(y.unique())
+```
+## Transforming Categorical into numerical values for Y
+```
+le = LabelEncoder()
+y = le.fit_transform(y)
+
+y
+```
+## Splitting Dataset for Training and Testing
+```
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20)
+```
+## Normalizing X values
+```
+
+scaler = StandardScaler()  
+scaler.fit(X_train)
+
+X_train = scaler.transform(X_train)  
+X_test = scaler.transform(X_test)
+```
+## Creating MLP and classifing
+```
+mlp = MLPClassifier(hidden_layer_sizes=(10, 10, 10), max_iter=1000)  
+mlp.fit(X_train, y_train)  
+predictions = mlp.predict(X_test) 
+```
+## Predictions
+```
+print(predictions)
+```
+## Accuracy
+```
+accuracy_score(y_test,predictions)
+```
+## Confusion Matrix
+```
+print(confusion_matrix(y_test,predictions))
+```
+## Classification Report
+```
+print(classification_report(y_test,predictions))
+```
 ## OUTPUT 
+## Reading Dataset
+![exp 4](https://user-images.githubusercontent.com/129970809/234872341-384dbddb-5aa6-4a0e-99ff-599144079be3.jpg)
+
+## First five values of X
+![4 1](https://user-images.githubusercontent.com/129970809/234872825-51679626-7971-44b2-b72a-7edf69781010.jpg)
+
+## First five values of Y
+![4 2](https://user-images.githubusercontent.com/129970809/234873151-77fb175a-ab65-4e9a-8e32-4dbcb521045f.png)
+
+## Predictions
+![image](https://user-images.githubusercontent.com/129970809/234873451-96318f17-3f5e-473e-8b5f-241b88c0ffa8.png)
+
+## Classification Report
+![4 1](https://user-images.githubusercontent.com/129970809/234874062-df8dedbc-918e-42c4-b03b-0caf2ffdadae.jpg)
 
 ## RESULT
+Thus a Multilayer Perceptron with Backpropagation is implemented for Multi classification
+
+
